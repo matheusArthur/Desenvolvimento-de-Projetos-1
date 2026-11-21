@@ -52,6 +52,40 @@ def nova_disciplina():
     return render_template("disciplina.html", nome=nome, erro=erro)
 
 
+@app.get("/disciplinas")
+def listar_disciplinas():
+    disciplinas = banco().execute(
+        "SELECT id, nome FROM disciplina ORDER BY nome, id"
+    ).fetchall()
+    return render_template("disciplinas.html", disciplinas=disciplinas)
+
+
+@app.route("/disciplinas/<int:disciplina_id>/excluir", methods=["GET", "POST"])
+def excluir_disciplina(disciplina_id):
+    conexao = banco()
+    if request.method == "POST":
+        with conexao:
+            resultado = conexao.execute(
+                """DELETE FROM disciplina WHERE id = ?
+                   AND NOT EXISTS (SELECT 1 FROM tarefa WHERE disciplina_id = ?)""",
+                (disciplina_id, disciplina_id),
+            )
+            if resultado.rowcount:
+                return redirect(url_for("listar_disciplinas"), code=303)
+
+    disciplina = conexao.execute(
+        """SELECT nome,
+                  EXISTS(SELECT 1 FROM tarefa WHERE disciplina_id = disciplina.id) AS em_uso
+           FROM disciplina WHERE id = ?""",
+        (disciplina_id,),
+    ).fetchone()
+    if disciplina is None:
+        abort(404)
+    return render_template("excluir_disciplina.html", disciplina=disciplina), (
+        409 if request.method == "POST" else 200
+    )
+
+
 def buscar_tarefa(tarefa_id):
     tarefa = banco().execute("SELECT * FROM tarefa WHERE id = ?", (tarefa_id,)).fetchone()
     if tarefa is None:

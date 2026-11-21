@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block titulo %}Excluir disciplina{% endblock %}
+{% block conteudo %}
+<h1>Excluir disciplina</h1>
+{% if disciplina.em_uso %}
+<div class="painel">
+  <p class="erro" role="alert"><strong>{{ disciplina.nome }}</strong> ainda tem tarefas vinculadas.</p>
+  <p>Mude essas tarefas para outra disciplina ou exclua as tarefas antes de excluir a disciplina.</p>
+  <div class="acoes">
+    <a class="botao" href="{{ url_for('inicio') }}">Ver tarefas</a>
+    <a href="{{ url_for('listar_disciplinas') }}">Voltar</a>
+  </div>
+</div>
+{% else %}
+<form method="post" class="painel">
+  <p>Deseja excluir <strong>{{ disciplina.nome }}</strong>?</p>
+  <div class="acoes"><button class="destrutivo">Confirmar exclusão</button>
+    <a href="{{ url_for('listar_disciplinas') }}">Cancelar</a>
+  </div>
+</form>
+{% endif %}
+{% endblock %}

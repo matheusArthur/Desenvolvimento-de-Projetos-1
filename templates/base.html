@@ -8,8 +8,11 @@
 </head>
 <body>
   <header><nav aria-label="Menu principal">
-    <a class="marca" href="{{ url_for('inicio') }}">Tarefas acadêmicas</a>
-    <a href="{{ url_for('nova_disciplina') }}">Cadastrar disciplina</a>
+    <a class="marca" href="{{ url_for('inicio') }}"><span class="marca-icone" aria-hidden="true">✓</span> Tarefas acadêmicas</a>
+    <div class="menu">
+      <a href="{{ url_for('inicio') }}" {% if request.endpoint == 'inicio' %}aria-current="page"{% endif %}>Tarefas</a>
+      <a href="{{ url_for('listar_disciplinas') }}" {% if request.endpoint == 'listar_disciplinas' %}aria-current="page"{% endif %}>Disciplinas</a>
+    </div>
   </nav></header>
   <main>{% block conteudo %}{% endblock %}</main>
 </body>

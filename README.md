@@ -1,6 +1,6 @@
 # Tarefas acadêmicas
 
-Desenvolvimento de Projetos I. O sistema organiza tarefas por disciplina e permite cadastrar, consultar, editar e excluir tarefas. Trabalho individual.
+Desenvolvimento de Projetos I. O sistema organiza tarefas por disciplina e permite cadastrar, consultar, editar e excluir tarefas. Trabalho individual de Matheus Arthur Ferreira Silva (@matheusArthur).
 
 ## Como executar no Windows
 
@@ -26,6 +26,7 @@ Se a porta estiver ocupada, execute `$env:PORT = '5001'` antes de iniciar e abra
 4. Encerre e inicie o servidor para verificar que a tarefa continua salva.
 5. Edite a tarefa e marque como Concluída.
 6. Abra a tela de exclusão. Cancele uma vez e confirme em seguida.
+7. Abra **Disciplinas**, selecione **Excluir** e confirme. Se houver tarefas vinculadas, mova ou exclua essas tarefas primeiro.
 
 ## Estrutura
 
