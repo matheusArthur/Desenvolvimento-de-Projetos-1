@@ -22,6 +22,9 @@
 </table>
 </div>
 {% else %}
-<p class="painel">Nenhuma tarefa cadastrada. Clique em <strong>Nova tarefa</strong> para começar.</p>
+<div class="painel vazio">
+  <span class="vazio-icone" aria-hidden="true">✓</span>
+  <p>Nenhuma tarefa cadastrada.</p>
+</div>
 {% endif %}
 {% endblock %}
