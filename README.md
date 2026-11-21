@@ -1,6 +1,6 @@
 # Tarefas acadêmicas
 
-Desenvolvimento de Projetos I. O sistema organiza tarefas por disciplina e permite cadastrar, consultar, editar e excluir tarefas. Trabalho individual.
+Desenvolvimento de Projetos II. O sistema organiza tarefas por disciplina e permite cadastrar, consultar, editar e excluir tarefas. Trabalho individual.
 
 ## Como executar no Windows
 
