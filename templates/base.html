@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}{% endblock %} · Tarefas acadêmicas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+  <header><nav aria-label="Menu principal">
+    <a class="marca" href="{{ url_for('inicio') }}">Tarefas acadêmicas</a>
+    <a href="{{ url_for('nova_disciplina') }}">Cadastrar disciplina</a>
+  </nav></header>
+  <main>{% block conteudo %}{% endblock %}</main>
+</body>
+</html>

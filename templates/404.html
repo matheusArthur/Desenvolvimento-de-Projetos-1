@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block titulo %}Página não encontrada{% endblock %}
+{% block conteudo %}
+<h1>Página não encontrada</h1>
+<p class="painel">A página ou tarefa solicitada não existe. <a href="{{ url_for('inicio') }}">Voltar à lista</a></p>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block titulo %}Minhas tarefas{% endblock %}
+{% block conteudo %}
+<div class="cabecalho"><h1>Minhas tarefas</h1>
+  <a class="botao" href="{{ url_for('nova_tarefa') }}">Nova tarefa</a>
+</div>
+{% if tarefas %}
+<div class="tabela">
+<table>
+  <thead><tr><th scope="col">Tarefa</th><th scope="col">Disciplina</th><th scope="col">Prazo</th><th scope="col">Situação</th><th scope="col">Ações</th></tr></thead>
+  <tbody>
+  {% for tarefa in tarefas %}
+  <tr>
+    <th scope="row">{{ tarefa.titulo }}</th><td>{{ tarefa.disciplina }}</td>
+    <td><time datetime="{{ tarefa.prazo }}">{{ tarefa.prazo[8:10] }}/{{ tarefa.prazo[5:7] }}/{{ tarefa.prazo[:4] }}</time></td>
+    <td><span class="status {{ 'concluida' if tarefa.status == 'Concluída' }}">{{ tarefa.status }}</span></td>
+    <td class="acoes"><a href="{{ url_for('editar_tarefa', tarefa_id=tarefa.id) }}">Editar</a>
+    <a class="perigo" href="{{ url_for('excluir_tarefa', tarefa_id=tarefa.id) }}">Excluir</a></td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p class="painel">Nenhuma tarefa cadastrada. Clique em <strong>Nova tarefa</strong> para começar.</p>
+{% endif %}
+{% endblock %}

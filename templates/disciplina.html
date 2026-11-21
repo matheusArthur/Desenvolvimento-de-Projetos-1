@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titulo %}Cadastrar disciplina{% endblock %}
+{% block conteudo %}
+<h1>Cadastrar disciplina</h1>
+<form method="post" class="painel">
+  {% if erro %}<p class="erro" role="alert">{{ erro }}</p>{% endif %}
+  <label for="nome">Nome da disciplina</label>
+  <input id="nome" name="nome" value="{{ nome }}" maxlength="80" required>
+  <div class="acoes"><button>Cadastrar disciplina</button><a href="{{ url_for('inicio') }}">Cancelar</a></div>
+</form>
+{% endblock %}

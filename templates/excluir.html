@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block titulo %}Excluir tarefa{% endblock %}
+{% block conteudo %}
+<h1>Excluir tarefa</h1>
+<form method="post" class="painel">
+  <p>Deseja excluir <strong>{{ tarefa.titulo }}</strong>?</p>
+  <div class="acoes"><button class="destrutivo">Confirmar exclusão</button><a href="{{ url_for('inicio') }}">Cancelar</a></div>
+</form>
+{% endblock %}

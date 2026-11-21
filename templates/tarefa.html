@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set acao = "Editar tarefa" if editando else "Nova tarefa" %}
+{% block titulo %}{{ acao }}{% endblock %}
+{% block conteudo %}
+<h1>{{ acao }}</h1>
+{% if disciplinas %}
+<form method="post" class="painel">
+  {% if erro %}<p class="erro" role="alert">{{ erro }}</p>{% endif %}
+  <label for="titulo">Título</label>
+  <input id="titulo" name="titulo" value="{{ dados.titulo }}" maxlength="120" required>
+  <label for="prazo">Prazo</label>
+  <input id="prazo" type="date" name="prazo" value="{{ dados.prazo }}" required>
+  <label for="disciplina">Disciplina</label>
+  <select id="disciplina" name="disciplina_id" required>
+    <option value="">Selecione</option>
+    {% for d in disciplinas %}<option value="{{ d.id }}" {% if d.id|string == dados.disciplina_id|string %}selected{% endif %}>{{ d.nome }}</option>{% endfor %}
+  </select>
+  {% if editando %}
+  <label for="status">Situação</label>
+  <select id="status" name="status">
+    {% for status in ["Pendente", "Concluída"] %}<option {% if dados.status == status %}selected{% endif %}>{{ status }}</option>{% endfor %}
+  </select>
+  {% endif %}
+  <div class="acoes"><button>Salvar tarefa</button><a href="{{ url_for('inicio') }}">Cancelar</a></div>
+</form>
+{% else %}
+<div class="painel">
+  <p>Cadastre uma disciplina para poder criar sua primeira tarefa.</p>
+  <a class="botao" href="{{ url_for('nova_disciplina') }}">Cadastrar disciplina</a>
+</div>
+{% endif %}
+{% endblock %}
